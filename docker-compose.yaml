@@ -2,5 +2,14 @@ version: "3.1"
 
 services:
 
-   haproxy:
+  web1:
+    image: luanngominh/haproxy
 
+  web2:
+    image: luanngominh/haproxy
+
+  web3:
+    image: luanngominh/haproxy
+
+  haproxy:
+    image: centos7
