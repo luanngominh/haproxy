@@ -7,7 +7,10 @@ RUN mkdir /var/app
 COPY bin/server /var/app/server
 
 # Add nginx repo
-# COPY config/nginx/nginx.repo /etc/nginx.repo
+COPY config/nginx/nginx.repo /etc/nginx.repo
+
+# Install EPEL and Remi
+RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
 # Update server
 RUN yum -y update
