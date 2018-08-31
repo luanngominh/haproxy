@@ -2,17 +2,17 @@ FROM centos:7
 
 MAINTAINER Luan Ngo Minh
 
-# Update server
-RUN yum -y update
-
 # Copy server file
 RUN mkdir /var/app
 COPY bin/server /var/app/server
-RUN /var/app/server
+
+# Add nginx repo
+# COPY config/nginx/nginx.repo /etc/nginx.repo
+
+# Update server
+RUN yum -y update
 
 #  Install nginx, supervisor
-RUN yum -y install epel-release
-
 RUN yum -y install nginx supervisor
 
 # Add nginx config
@@ -26,4 +26,4 @@ EXPOSE 80
 
 RUN chmod +x /var/app/counter
 
-CMD ["/user/bin/nginx", "-D", "FOREGROUND"]
+CMD ["/var/app/server", "-D", "FOREGROUND"]

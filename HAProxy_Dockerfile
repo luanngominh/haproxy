@@ -1,0 +1,11 @@
+FROM centos:7
+
+MAINTAINER Luan Ngo Minh
+
+# Install haproxy
+RUN yum -y install haproxy
+
+# Add haproxy config
+COPY config/haproxy/haproxy.cfg /etc/haproxy/haproxy.config
+
+CMD ["systemctl", "start", "haproxy"]
