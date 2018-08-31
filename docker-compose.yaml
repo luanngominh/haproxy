@@ -4,12 +4,20 @@ services:
 
   web1:
     image: luanngominh/haproxy
+    restart: always
 
   web2:
     image: luanngominh/haproxy
+    restart: always
 
   web3:
     image: luanngominh/haproxy
+    restart: always
 
   haproxy:
-    image: centos7
+    image: luanngominh/haproxy
+    restart: always
+    links:
+      - "web1"
+      - "web2"
+      - "web3"

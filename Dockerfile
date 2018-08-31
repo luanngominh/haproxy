@@ -2,6 +2,9 @@ FROM centos:7
 
 MAINTAINER Luan Ngo Minh
 
+# Update server
+RUN yum -y update
+
 # Copy server file
 RUN mkdir /var/app
 COPY bin/server /var/app/server
@@ -13,8 +16,8 @@ RUN yum -y install epel-release
 RUN yum -y install nginx supervisor
 
 # Add nginx config
-COPY config/app.conf /etc/nginx/conf.d/app.conf
-COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/app.conf /etc/nginx/conf.d/app.conf
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Install py pip
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && pip install schedule
