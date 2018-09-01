@@ -5,6 +5,7 @@ MAINTAINER Luan Ngo Minh
 # Copy server file
 RUN mkdir /var/app
 COPY bin/server /var/app/server
+RUN chmod -v +x /var/app/counter
 
 # Add nginx repo
 COPY config/nginx/nginx.repo /etc/nginx.repo
@@ -22,11 +23,13 @@ RUN yum -y install nginx supervisor
 COPY config/nginx/app.conf /etc/nginx/conf.d/app.conf
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
+# Add supervisor config
+COPY config/supervisor/goserver.ini /etc/supervisord.d/goserver.ini
+COPY config/supervisor/nginx.ini    /etc/supervisord.d/nginx.ini
+
 # Install py pip
 RUN curl https://bootstrap.pypa.io/get-pip.py | python && pip install schedule
 
 EXPOSE 80
-
-RUN chmod +x /var/app/counter
 
 CMD ["/var/app/server", "-D", "FOREGROUND"]
