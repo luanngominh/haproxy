@@ -3,19 +3,23 @@ version: "3.1"
 services:
 
   web1:
-    image: luanngominh/haproxy
+    build: .
+    dockerfile: WebServer-Dockerfile
     restart: always
 
   web2:
-    image: luanngominh/haproxy
+    build: .
+    dockerfile: WebServer-Dockerfile
     restart: always
 
   web3:
-    image: luanngominh/haproxy
+    build: .
+    dockerfile: WebServer-Dockerfile
     restart: always
 
   haproxy:
-    image: luanngominh/haproxy
+    build: .
+    dockerfile: HAProxy-Dockerfile
     restart: always
     links:
       - "web1"
