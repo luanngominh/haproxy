@@ -32,4 +32,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py | python && pip install schedule
 
 EXPOSE 80
 
-CMD ["/var/app/server", "-D", "FOREGROUND"]
+# Copy kick-start for start server with supervisor
+COPY bin/http-kick-start /usr/bin/kick-start
+
+CMD ["kick-start"]
