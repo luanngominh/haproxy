@@ -5,7 +5,7 @@ MAINTAINER Luan Ngo Minh
 # Copy server file
 RUN mkdir /var/app
 COPY bin/server /var/app/server
-RUN chmod -v +x /var/app/counter
+RUN chmod -v +x /var/app/server
 
 # Add nginx repo
 COPY config/nginx/nginx.repo /etc/nginx.repo
