@@ -2,10 +2,20 @@ FROM centos:7
 
 MAINTAINER Luan Ngo Minh
 
+# Install EPEL and Remi
+RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
 # Install haproxy
-RUN yum -y install haproxy
+RUN yum -y install haproxy supervisor
 
 # Add haproxy config
-COPY config/haproxy/haproxy.cfg /etc/haproxy/haproxy.config
+COPY config/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg
 
-CMD ["systemctl", "start", "haproxy"]
+# Add supervisor config
+COPY config/supervisor/haproxy.ini /etc/supervisord.d/haproxy.ini
+
+# Copy kick-start for start server with supervisor
+COPY bin/haproxy-kick-start /usr/bin/kick-start
+RUN chmod -v +x /usr/bin/kick-start
+
+CMD ["kick-start"]

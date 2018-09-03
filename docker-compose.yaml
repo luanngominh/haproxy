@@ -3,20 +3,22 @@ version: "3.1"
 services:
 
   web1:
-    image: luanngominh/haproxy:0.9-web
+    image: luanngominh/haproxy:lst-web
     restart: always   
 
   web2:
-    image: luanngominh/haproxy:0.9-web
+    image: luanngominh/haproxy:lst-web
     restart: always
 
   web3:
-    image: luanngominh/haproxy:0.9-web
+    image: luanngominh/haproxy:lst-web
     restart: always
 
   haproxy:
-    image: luanngominh/haproxy:0.9-haproxy
+    image: luanngominh/haproxy:1.0-haproxy
     restart: always
+    ports:
+      - 80:80
     links:
       - "web1"
       - "web2"
