@@ -15,7 +15,7 @@ services:
     restart: always
 
   haproxy:
-    image: luanngominh/haproxy:1.0-haproxy
+    image: luanngominh/haproxy:lst-haproxy
     restart: always
     ports:
       - 80:80
