@@ -34,5 +34,6 @@ EXPOSE 80
 
 # Copy kick-start for start server with supervisor
 COPY bin/http-kick-start /usr/bin/kick-start
+RUN chmod -v +x /usr/bin/kick-start
 
 CMD ["kick-start"]
