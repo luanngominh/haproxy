@@ -9,13 +9,15 @@ RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 RUN yum -y install haproxy supervisor
 
 # Add haproxy config
-COPY config/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg
+COPY ../../config/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg
 
 # Add supervisor config
-COPY config/supervisor/haproxy.ini /etc/supervisord.d/haproxy.ini
+COPY ../../config/supervisor/haproxy.ini /etc/supervisord.d/haproxy.ini
 
 # Copy kick-start for start server with supervisor
-COPY bin/haproxy-kick-start /usr/bin/kick-start
+COPY ../../bin/haproxy-kick-start /usr/bin/kick-start
 RUN chmod -v +x /usr/bin/kick-start
+
+EXPOSE 80
 
 CMD ["kick-start"]

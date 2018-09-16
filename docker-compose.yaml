@@ -3,19 +3,35 @@ version: "3.1"
 services:
 
   web1:
-    image: luanngominh/haproxy:lst-web
+    image: web
+    container_name: web1
+    build:
+       context: .
+       dockerfile: ./docker_file/web/dockerfile
     restart: always   
 
   web2:
-    image: luanngominh/haproxy:lst-web
-    restart: always
+    image: web
+    container_name: web2
+    build:
+       context: .
+       dockerfile: ./docker_file/web/dockerfile
+    restart: always  
 
   web3:
-    image: luanngominh/haproxy:lst-web
-    restart: always
+    image: web
+    container_name: web3
+    build:
+       context: .
+       dockerfile: ./docker_file/web/dockerfile
+    restart: always  
 
   haproxy:
-    image: luanngominh/haproxy:lst-haproxy
+    image: haproxy
+    container_name: loadbalancer
+    bbuild:
+       context: .
+       dockerfile: ./docker_file/haproxy/dockerfile
     restart: always
     ports:
       - 80:80
